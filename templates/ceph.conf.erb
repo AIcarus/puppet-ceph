@@ -46,15 +46,22 @@
 <% if @mon_init_members -%>
   mon initial members = <%= @mon_init_members %>
 <% end -%>
-  mon data = <%= @mon_data %>
+  # mon data = <%= @mon_data %> # no need to change ceph defaults
+<% if @mon_host -%>  
+  mon host = <%= @mon_host%>    # a minimum configuration needs mon host and mon addr: https://ceph.com/docs/master/rados/configuration/mon-config-ref/#minimum-configuration
+<% end -%>
+<% if @mon_addr -%>  
+  mon addr = <%= @mon_addr%>
+<% end -%>
 
 [osd]
   osd journal size = <%= @journal_size_mb %>
   filestore flusher = false
-  osd data = <%= @osd_data %>
-  osd journal = <%= @osd_journal_real %>
+  # osd data = <%= @osd_data %>  # no need to change ceph defaults
+  # osd journal = <%= @osd_journal_real %>/journal  # no need to change ceph defaults
   osd mkfs type = xfs
-  keyring = <%= @osd_data %>/keyring
+  # keyring = <%= @osd_data %>/keyring
+  filestore xattr use omap = ture  # suggested on https://ceph.com/docs/master/rados/configuration/filesystem-recommendations/
 
 [mds]
   mds data = <%= @mds_data %>

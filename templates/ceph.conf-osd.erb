@@ -1,6 +1,6 @@
 [osd.<%= @name %>]
    host = <%= @hostname %>
-   devs = <%= @device %>1
+   devs = <%= @device %>
 <% if @cluster_addr -%>
    cluster addr = <%= @cluster_addr %>
 <% end -%>
@@ -8,7 +8,7 @@
    public addr = <%= @public_addr %>
 <% end -%>
 <% if @journal -%>
-   osd journal = <%= @journal %>
+   osd journal = <%= @journal %>/journal   # we use parent folder to mount
 <% end -%>
 <% if @journalsize -%>
    osd journal size = <%= @journalsize %>

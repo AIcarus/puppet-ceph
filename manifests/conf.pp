@@ -35,8 +35,10 @@ class ceph::conf (
   $journal_size_mb         = 4096,
   $cluster_network         = undef,
   $public_network          = undef,
-  $mon_data                = '/var/lib/ceph/mon/mon.$id',
+  $mon_data                = '/var/lib/ceph/mon/ceph-$id',    # don't change, must align to ceph defaults
   $mon_init_members        = undef,
+  $mon_host                = undef,
+  $mon_addr                = undef,
   $osd_data                = '/var/lib/ceph/osd/ceph-$id',
   $osd_journal             = undef,
   $mds_data                = '/var/lib/ceph/mds/mds.$id',
@@ -52,7 +54,7 @@ class ceph::conf (
   if $osd_journal {
     $osd_journal_real = $osd_journal
   } else {
-    $osd_journal_real = "${osd_data}/journal"
+    $osd_journal_real = "${osd_data}_journal"   # put journal outside ${osd_data} since we mount it to another partition
   }
 
   concat { '/etc/ceph/ceph.conf':

@@ -13,5 +13,17 @@ class ceph::params {
         }
       }
     }
+
+    'RedHat': {
+      case $::operatingsystem {
+        'CentOS': {
+          $service_provider = 'redhat'
+        }
+        default: {
+          $service_provider = undef
+        }
+      } 
+    }
+    
   }
 }
