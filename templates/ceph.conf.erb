@@ -60,8 +60,8 @@
   # osd data = <%= @osd_data %>  # no need to change ceph defaults
   # osd journal = <%= @osd_journal_real %>/journal  # no need to change ceph defaults
   osd mkfs type = xfs
-  # keyring = <%= @osd_data %>/keyring
-  filestore xattr use omap = ture  # suggested on https://ceph.com/docs/master/rados/configuration/filesystem-recommendations/
+  #   keyring = <%= @osd_data %>/keyring
+  filestore xattr use omap = true  # suggested on https://ceph.com/docs/master/rados/configuration/filesystem-recommendations/
 
 [mds]
   mds data = <%= @mds_data %>
